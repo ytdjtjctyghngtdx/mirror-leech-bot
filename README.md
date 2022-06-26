@@ -35,6 +35,7 @@ This is a Telegram Bot written in Python for mirroring files on the Internet to 
 - Incomplete task notifier to get incomplete task messages after restart, works with database.
 - Many bugs have been fixed
 
+- UNIFIED LOGIN (AppDrive, DriveApp, GDFlix, DriveBit, DriveLinks, DriveSharer, DriveAce, DrivePro, Sharer)supported links  
 - Mirror direct download links, Torrent, and Telegram files to Google Drive
 - Mirror Mega.nz links to Google Drive
 - Copy files from someone's Drive to your Drive (Using Autorclone)
@@ -177,6 +178,20 @@ Fill up rest of the fields. Meaning of each field is discussed below:
 
 <p><a href="https://github.com/woodcraft5/mirror-leech-bot"> <img src="https://img.shields.io/badge/%E2%96%BA-GDTOT-brightgreen" width="190""/></a></p>
 - `CRYPT`: Cookie for gdtot google drive link generator. Follow these [steps](https://github.com/woodcraft5/mirror-leech-bot/tree/master#gdtot-cookies).
+
+### UNIFIED LOGIN (AppDrive, DriveApp, GDFlix, DriveBit, DriveLinks, DriveSharer, DriveAce, DrivePro, Sharer)
+
+- UNIFIED_EMAIL = Fill your Email address. (Note: Use same email in unified login sites.)
+UNIFIED_PASS = Password for login. (Same password for all sites.)
+
+#### Token use this chrome extension: Get cookies.txt 
+
+### Cookie-Editor
+ <p><a href="https://github.com/woodcraft5/mirror-leech-bot"> <img src="https://img.shields.io/badge/%E2%96%B7-Cookie--Editor-brightgreen" width="190""/></a></p>
+
+- Get cookies.txt ▷ https://chrome.google.com/webstore/detail/get-cookiestxt/bgaddhkoddajcdgocldbbfleckgcbcid
+
+- Get Cookie-Editor ▷ https://chrome.google.com/webstore/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm
 
 <p><a href="https://github.com/woodcraft5/mirror-leech-bot"> <img src="https://img.shields.io/badge/%E2%96%BA-Size%20Limits-yellowgreen" width="190""/></a></p>
 - `TORRENT_DIRECT_LIMIT`: To limit the Torrent/Direct mirror size. Don't add unit. Default unit is `GB`.
