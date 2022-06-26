@@ -35,7 +35,7 @@ This is a Telegram Bot written in Python for mirroring files on the Internet to 
 - Incomplete task notifier to get incomplete task messages after restart, works with database.
 - Many bugs have been fixed
 
-- UNIFIED LOGIN (AppDrive, DriveApp, GDFlix, DriveBit, DriveLinks, DriveSharer, DriveAce, DrivePro, Sharer)supported links  
+- UNIFIED LOGIN (AppDrive, DriveApp, GDFlix, DriveBit, DriveLinks, DriveSharer, DriveAce, DrivePro, Sharer) supported links  
 - Mirror direct download links, Torrent, and Telegram files to Google Drive
 - Mirror Mega.nz links to Google Drive
 - Copy files from someone's Drive to your Drive (Using Autorclone)
@@ -184,7 +184,7 @@ Fill up rest of the fields. Meaning of each field is discussed below:
 - UNIFIED_EMAIL = Fill your Email address. (Note: Use same email in unified login sites.)
 UNIFIED_PASS = Password for login. (Same password for all sites.)
 
-#### Token use this chrome extension: Get cookies.txt 
+#### Token use this chrome extension: Get cookies.txt & Cookie-Editor
 
 ### Cookie-Editor
  <p><a href="https://github.com/woodcraft5/mirror-leech-bot"> <img src="https://img.shields.io/badge/%E2%96%B7-Cookie--Editor-brightgreen" width="190""/></a></p>
