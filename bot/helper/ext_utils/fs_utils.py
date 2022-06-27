@@ -19,7 +19,6 @@ ARCH_EXT = [".tar.bz2", ".tar.gz", ".bz2", ".gz", ".tar.xz", ".tar", ".tbz2", ".
                 ".cpio", ".cramfs", ".deb", ".dmg", ".fat", ".hfs", ".lzh", ".lzma", ".mbr",
                 ".msi", ".mslz", ".nsis", ".ntfs", ".rpm", ".squashfs", ".udf", ".vhd", ".xar"]
 
-
 def clean_download(path: str):
     if ospath.exists(path):
         LOGGER.info(f"Cleaning Download: {path}")
@@ -76,20 +75,6 @@ def get_path_size(path: str):
             total_size += ospath.getsize(abs_path)
     return total_size
 
-    def check_storage_threshold(size: int, arch=False, alloc=False):
-    if not alloc:
-        if not arch:
-            if disk_usage(DOWNLOAD_DIR).free - size < STORAGE_THRESHOLD * 1024**3:
-                return False
-        elif disk_usage(DOWNLOAD_DIR).free - (size * 2) < STORAGE_THRESHOLD * 1024**3:
-            return False
-    elif not arch:
-        if disk_usage(DOWNLOAD_DIR).free < STORAGE_THRESHOLD * 1024**3:
-            return False
-    elif disk_usage(DOWNLOAD_DIR).free - size < STORAGE_THRESHOLD * 1024**3:
-        return False
-    return True
-
 def check_storage_threshold(size: int, arch=False, alloc=False):
     if not alloc:
         if not arch:
@@ -130,11 +115,10 @@ def take_ss(video_file):
     
     status = srun(["ffmpeg", "-hide_banner", "-loglevel", "error", "-ss", str(duration),
                         "-i", video_file, "-vframes", "1", des_dir])
-    
 
     if status.returncode != 0 or not ospath.lexists(des_dir):
         return None
-
+    
     with Image.open(des_dir) as img:
         img.convert("RGB").save(des_dir, "JPEG")
 
@@ -177,16 +161,19 @@ def get_media_info(path):
     if fields is None:
         LOGGER.error(f"get_media_info: {result}")
         return 0, None, None
-    try:
-        duration = round(float(fields['duration']))
-    except:
-        duration = 0
-    try:
-        artist = str(fields['tags']['artist'])
-    except:
-        artist = None
-    try:
-        title = str(fields['tags']['title'])
-    except:
+
+    duration = round(float(fields.get('duration', 0)))
+
+    fields = fields.get('tags')
+    if fields is not None:
+        artist = fields.get('artist')
+        if artist is None:
+            artist = fields.get('ARTIST')
+        title = fields.get('title')
+        if title is None:
+            title = fields.get('TITLE')
+    else:
         title = None
+        artist = None
+
     return duration, artist, title
