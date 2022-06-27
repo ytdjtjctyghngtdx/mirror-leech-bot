@@ -48,6 +48,7 @@ try:
         log_error(f"NETRC_URL: {e}")
 except:
     pass
+    
 try:
     SERVER_PORT = getConfig('SERVER_PORT')
     if len(SERVER_PORT) == 0:
