@@ -45,22 +45,22 @@ def stats(update, context):
     mem_a = get_readable_file_size(memory.available)
     mem_u = get_readable_file_size(memory.used)
 
-    stats = f'<b>🌼 Commit Date:</b> {last_commit}\n'\
-            f'<b>🌼 Bot Uptime:</b> {currentTime}\n'\
-            f'<b>🌼 OS Uptime:</b> {osUptime}\n'\
-            f'<b>🌼 Total Disk Space:</b> {total}\n'\
-            f'<b>🌼 Used:</b> {used} | <b>Free:</b> {free}\n'\
-            f'<b>🌼 Upload:</b> {sent}\n'\
-            f'<b>🌼 Download:</b> {recv}\n'\
-            f'<b>🌼 CPU:</b> {cpuUsage}%\n'\
-            f'<b>🌼 RAM:</b> {mem_p}%\n'\
-            f'<b>🌼 DISK:</b> {disk}%\n'\
-            f'<b>🌼 Physical Cores:</b> {p_core}\n'\
-            f'<b>🌼 Total Cores:</b> {t_core}\n'\
-            f'<b>🌼 SWAP:</b> {swap_t} | <b>Used:</b> {swap_p}%\n'\
-            f'<b>🌼 Memory Total:</b> {mem_t}\n'\
-            f'<b>🌼 Memory Free:</b> {mem_a}\n'\
-            f'<b>🌼 Memory Used:</b> {mem_u}\n'
+    stats = f'<b>🌼 Commit Date ➤</b> {last_commit}\n'\
+            f'<b>🌼 Bot Uptime ➤</b> {currentTime}\n'\
+            f'<b>🌼 OS Uptime ➤</b> {osUptime}\n'\
+            f'<b>🌼 Total Disk Space ➤</b> {total}\n'\
+            f'<b>🌼 Used ➤</b> {used} | <b>Free:</b> {free}\n'\
+            f'<b>🌼 Upload ➤</b> {sent}\n'\
+            f'<b>🌼 Download ➤</b> {recv}\n'\
+            f'<b>🌼 CPU ➤</b> {cpuUsage}%\n'\
+            f'<b>🌼 RAM ➤</b> {mem_p}%\n'\
+            f'<b>🌼 DISK ➤</b> {disk}%\n'\
+            f'<b>🌼 Physical Cores ➤</b> {p_core}\n'\
+            f'<b>🌼 Total Cores ➤</b> {t_core}\n'\
+            f'<b>🌼 SWAP ➤</b> {swap_t} | <b>Used:</b> {swap_p}%\n'\
+            f'<b>🌼 Memory Total ➤</b> {mem_t}\n'\
+            f'<b>🌼 Memory Free ➤</b> {mem_a}\n'\
+            f'<b>🌼 Memory Used ➤</b> {mem_u}\n'
 
     sendMessage(stats, context.bot, update.message)
 
@@ -70,7 +70,7 @@ def start(update, context):
 
     buttons.buildbutton("💚 Repo 💚", "https://github.com/woodcraft5/mirror-leech-bot")
     buttons.buildbutton(""🔴 Report Group 🔴", "https://t.me/FLAC_Org_Sound_track_Chat_On")
-    buttons.buildbutton("Mirror Group", "https://t.me/FLAC_Org_Sound_track_Chat_On")
+    buttons.buildbutton("💚 Mirror Group💚 ", "https://t.me/FLAC_Org_Sound_track_Chat_On")
     buttons.buildbutton("🔲 Owner 🔲", "https://t.me/woodcraft5"")
 
     reply_markup = InlineKeyboardMarkup(buttons.build_menu(2))
@@ -176,7 +176,7 @@ help_string_telegraph = f'''<br>
 '''
 
 help = telegraph.create_page(
-        title='WOODcraft-Bot Help',
+        title='🌼 WOODcraft-Bot Help 🌼',
         content=help_string_telegraph,
     )["path"]
 
