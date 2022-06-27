@@ -174,6 +174,29 @@ class DbManger:
         self.conn.commit()
         self.disconnect()
 
+        # For Leech log
+    def addleech_log(self, chat_id: int):
+        if self.err:
+            return "Error in DB connection, check log for details"
+        elif not self.user_check(chat_id):
+            sql = 'INSERT INTO users (uid, leechlog) VALUES ({}, TRUE)'.format(chat_id)
+        else:
+            sql = 'UPDATE users SET leechlog = TRUE WHERE uid = {}'.format(chat_id)
+        self.cur.execute(sql)
+        self.conn.commit()
+        self.disconnect()
+        return 'Successfully added to leech logs'
+
+    def rmleech_log(self, chat_id: int):
+        if self.err:
+            return "Error in DB connection, check log for details"
+        elif self.user_check(chat_id):
+            sql = 'UPDATE users SET leechlog = FALSE WHERE uid = {}'.format(chat_id)
+            self.cur.execute(sql)
+            self.conn.commit()
+            self.disconnect()
+            return 'Removed from leech logs successfully'
+
     def user_check(self, uid: int):
         self.cur.execute("SELECT * FROM users WHERE uid = {}".format(uid))
         res = self.cur.fetchone()
