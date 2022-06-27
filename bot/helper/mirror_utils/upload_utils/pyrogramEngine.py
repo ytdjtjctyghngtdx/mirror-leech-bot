@@ -110,6 +110,34 @@ class TgUploader:
                                                                   supports_streaming=True,
                                                                   disable_notification=True,
                                                                   progress=self.__upload_progress)
+                                                                                              if BOT_PM:
+                                try:
+                                    app.send_video(chat_id=self.__user_id, video=self.__sent_msg.video.file_id,
+                                                   caption=cap_mono)
+                                except Exception as err:
+                                    LOGGER.error(f"Failed To Send Video in PM:\n{err}")
+                    else:
+                        self.__sent_msg = self.__sent_msg.reply_video(video=up_path,
+                                                                      quote=True,
+                                                                      caption=cap_mono,
+                                                                      duration=duration,
+                                                                      width=width,
+                                                                      height=height,
+                                                                      thumb=thumb,
+                                                                      supports_streaming=True,
+                                                                      disable_notification=True,
+                                                                      progress=self.__upload_progress)
+                        if BOT_PM:
+                            try:
+                                app.send_video(chat_id=self.__user_id, video=self.__sent_msg.video.file_id,
+                                               caption=cap_mono)
+                            except Exception as err:
+                                LOGGER.error(f"Failed To Send Video in PM:\n{err}")
+                elif file_.upper().endswith(AUDIO_SUFFIXES):
+                    duration , artist, title = get_media_info(up_path)
+                    if len(LEECH_LOG) != 0:
+                        for leechchat in self.__leech_log:
+                            self.__sent_msg = self.__app.send_audio(chat_id=leechchat,audio=up_path,
                 elif file_.upper().endswith(AUDIO_SUFFIXES):
                     duration , artist, title = get_media_info(up_path)
                     self.__sent_msg = self.__sent_msg.reply_audio(audio=up_path,
