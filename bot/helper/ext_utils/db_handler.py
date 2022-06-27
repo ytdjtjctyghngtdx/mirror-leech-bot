@@ -29,7 +29,8 @@ class DbManger:
                  auth boolean DEFAULT FALSE,
                  media boolean DEFAULT FALSE,
                  doc boolean DEFAULT FALSE,
-                 thumb bytea DEFAULT NULL
+                 thumb bytea DEFAULT NULL,
+                 leechlog boolean DEFAULT FALSE
               )
               """
         self.cur.execute(sql)
