@@ -2,13 +2,10 @@
 
 from string import ascii_letters
 from random import SystemRandom
-
 from time import sleep
 from telegraph import Telegraph
 from telegraph.exceptions import RetryAfterError
-
 from bot import LOGGER
-
 
 class TelegraphHelper:
     def __init__(self, author_name=None, author_url=None):
@@ -72,10 +69,9 @@ class TelegraphHelper:
                     nxt_page += 1
             self.edit_page(
                 path = path[prev_page],
-                title = 'WOODcraft-bot Torrent Search',
+                title = '🌼 WOODcraft-Bot 🌼 Search',
                 content=content
             )
         return
 
-
-telegraph=TelegraphHelper('WOODcraft-Telegram-Repo', 'https://github.com/woodcraft5/mirror-leech-bot')
+telegraph=TelegraphHelper('🌼 WOODcraft-Telegram-Repo', 'https://github.com/shuvam-dawn/MLTB-Custom-UI')
