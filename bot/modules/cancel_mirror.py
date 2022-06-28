@@ -11,10 +11,9 @@ from bot.helper.telegram_helper import button_build
 
 
 def cancel_mirror(update, context):
-    args = update.message.text.split(" ", maxsplit=1)
     user_id = update.message.from_user.id
-    if len(args) > 1:
-        gid = args[1]
+    if len(context.args) == 1:
+        gid = context.args[0]
         dl = getDownloadByGid(gid)
         if not dl:
             return sendMessage(f"GID: <code>{gid}</code> Not Found.", context.bot, update.message)
@@ -28,12 +27,12 @@ def cancel_mirror(update, context):
                 dl = None
         if not dl:
             return sendMessage("This is not an active task!", context.bot, update.message)
-    elif len(args) == 1:
+    elif len(context.args) == 0:
         msg = f"Reply to an active <code>/{BotCommands.MirrorCommand}</code> message which was used to start the download or send <code>/{BotCommands.CancelMirror} GID</code> to cancel it!"
         return sendMessage(msg, context.bot, update.message)
 
-    if OWNER_ID != user_id and dl.message.from_user.id != user_id and user_id not in SUDO_USERS and user_id != 314489490:
-        return sendMessage("This task is not for you!", context.bot, update.message)
+    if OWNER_ID != user_id and dl.message.from_user.id != user_id and user_id not in SUDO_USERS:
+        return sendMessage("This is not your Task, STFU !", context.bot, update.message)
 
     if dl.status() == MirrorStatus.STATUS_ARCHIVING:
         sendMessage("Archival in Progress, You Can't Cancel It.", context.bot, update.message)
@@ -71,13 +70,13 @@ def cancel_all_update(update, context):
     query = update.callback_query
     user_id = query.from_user.id
     data = query.data
-    data = data.split(" ")
+    data = data.split()
     if CustomFilters._owner_query(user_id):
         query.answer()
         query.message.delete()
         cancel_all(data[1])
     else:
-        query.answer(text="You don't have permission to use these buttons!", show_alert=True)
+        query.answer(text="This is not yours, STFU !", show_alert=True)
 
 
 
