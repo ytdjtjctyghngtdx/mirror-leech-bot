@@ -133,28 +133,44 @@ AUTHORIZED_CHATS = set()
 SUDO_USERS = set()
 AS_DOC_USERS = set()
 AS_MEDIA_USERS = set()
-EXTENTION_FILTER = set(['.torrent'])
+EXTENSION_FILTER = set()
+LEECH_LOG = set()	
+MIRROR_LOGS = set()
 
 try:
     aid = getConfig('AUTHORIZED_CHATS')
-    aid = aid.split(' ')
+    aid = aid.split()
     for _id in aid:
-        AUTHORIZED_CHATS.add(int(_id))
+        AUTHORIZED_CHATS.add(int(_id.strip()))
 except:
     pass
 try:
     aid = getConfig('SUDO_USERS')
-    aid = aid.split(' ')
+    aid = aid.split()
     for _id in aid:
-        SUDO_USERS.add(int(_id))
+        SUDO_USERS.add(int(_id.strip()))
 except:
     pass
 try:
-    fx = getConfig('EXTENTION_FILTER')
+    fx = getConfig('EXTENSION_FILTER')
+except:	
+    pass	
+try:	
+    aid = getConfig('LEECH_LOG')	
+    aid = aid.split(' ')	
+    for _id in aid:	
+        LEECH_LOG.add(int(_id))	
+except:	
+    pass	
+try:	
+    aid = getConfig('MIRROR_LOGS')	
+    aid = aid.split(' ')	
+    for _id in aid:	
+        MIRROR_LOGS.add(int(_id))
     if len(fx) > 0:
-        fx = fx.split(' ')
+        fx = fx.split()
         for x in fx:
-            EXTENTION_FILTER.add(x.lower())
+            EXTENSION_FILTER.add(x.strip().lower())
 except:
     pass
 try:
@@ -169,7 +185,7 @@ try:
     TELEGRAM_API = getConfig('TELEGRAM_API')
     TELEGRAM_HASH = getConfig('TELEGRAM_HASH')
 except:
-    LOGGER.error("One or more env variables missing! Exiting now")
+    log_error("One or more env variables missing! Exiting now")
     exit(1)
 
 LOGGER.info("Generating BOT_SESSION_STRING")
@@ -187,7 +203,7 @@ except:
 def aria2c_init():
     try:
         log_info("Initializing Aria2c")
-        link = "https://releases.ubuntu.com/21.10/ubuntu-21.10-desktop-amd64.iso.torrent"
+        link = "https://linuxmint.com/torrents/lmde-5-cinnamon-64bit.iso.torrent"
         dire = DOWNLOAD_DIR.rstrip("/")
         aria2.add_uris([link], {'dir': dire})
         sleep(3)
@@ -436,6 +452,53 @@ try:
         raise KeyError
 except:
     CRYPT = None
+try:
+    UNIFIED_EMAIL = getConfig('UNIFIED_EMAIL')
+    if len(UNIFIED_EMAIL) == 0:
+        raise KeyError
+except:
+    UNIFIED_EMAIL = None
+try:
+    UNIFIED_PASS = getConfig('UNIFIED_PASS')
+    if len(UNIFIED_PASS) == 0:
+        raise KeyError
+except:
+    UNIFIED_PASS = None
+try:
+    HUBDRIVE_CRYPT = getConfig('HUBDRIVE_CRYPT')
+    if len(HUBDRIVE_CRYPT) == 0:
+        raise KeyError
+except:
+    HUBDRIVE_CRYPT = None
+try:
+    KATDRIVE_CRYPT = getConfig('KATDRIVE_CRYPT')
+    if len(KATDRIVE_CRYPT) == 0:
+        raise KeyError
+except:
+    KATDRIVE_CRYPT = None
+try:
+    DRIVEFIRE_CRYPT = getConfig('DRIVEFIRE_CRYPT')
+    if len(DRIVEFIRE_CRYPT) == 0:
+        raise KeyError
+except:
+    DRIVEFIRE_CRYPT = None
+try:
+    XSRF_TOKEN = getConfig('XSRF_TOKEN')
+    if len(XSRF_TOKEN) == 0:
+        raise KeyError
+except:
+    XSRF_TOKEN = None
+try:
+    laravel_session = getConfig('laravel_session')
+    if len(laravel_session) == 0:
+        raise KeyError
+except:
+    laravel_session = None
+try:	
+    BOT_PM = getConfig('BOT_PM')	
+    BOT_PM = BOT_PM.lower() == 'true'	
+except KeyError:	
+    BOT_PM = False
 try:
     TOKEN_PICKLE_URL = getConfig('TOKEN_PICKLE_URL')
     if len(TOKEN_PICKLE_URL) == 0:
