@@ -22,7 +22,7 @@ from .modules import authorize, list, cancel_mirror, mirror_status, mirror, clon
 
 def stats(update, context):
     if ospath.exists('.git'):
-        last_commit = check_output(["git log -1 --date=short --pretty=format:'%cd <b>From</b> %cr'"], shell=True).decode()
+        last_commit = check_output(["git log -1 --date=short --pretty=format:'%cd \n<b>From</b> %cr'"], shell=True).decode()
     else:
         last_commit = 'No UPSTREAM_REPO'
     currentTime = get_readable_time(time() - botStartTime)
@@ -44,38 +44,41 @@ def stats(update, context):
     mem_t = get_readable_file_size(memory.total)
     mem_a = get_readable_file_size(memory.available)
     mem_u = get_readable_file_size(memory.used)
-    stats = f'<b>Commit Date:</b> {last_commit}\n\n'\
-            f'<b>Bot Uptime:</b> {currentTime}\n'\
-            f'<b>OS Uptime:</b> {osUptime}\n\n'\
-            f'<b>Total Disk Space:</b> {total}\n'\
-            f'<b>Used:</b> {used} | <b>Free:</b> {free}\n\n'\
-            f'<b>Upload:</b> {sent}\n'\
-            f'<b>Download:</b> {recv}\n\n'\
-            f'<b>CPU:</b> {cpuUsage}%\n'\
-            f'<b>RAM:</b> {mem_p}%\n'\
-            f'<b>DISK:</b> {disk}%\n\n'\
-            f'<b>Physical Cores:</b> {p_core}\n'\
-            f'<b>Total Cores:</b> {t_core}\n\n'\
-            f'<b>SWAP:</b> {swap_t} | <b>Used:</b> {swap_p}%\n'\
-            f'<b>Memory Total:</b> {mem_t}\n'\
-            f'<b>Memory Free:</b> {mem_a}\n'\
-            f'<b>Memory Used:</b> {mem_u}\n'
-    sendMessage(stats, context.bot, update.message)
+    stats = f'<b>🌼 Commit Date ➤</b> {last_commit}\n'\
+            f'<b>🌼 Bot Uptime ➤</b> {currentTime}\n'\
+            f'<b>🌼 OS Uptime ➤</b> {osUptime}\n'\
+            f'<b>🌼 Total Disk Space ➤</b> {total}\n'\
+            f'<b>🌼 Used ➤</b> {used} | <b>Free:</b> {free}\n'\
+            f'<b>🌼 Upload ➤</b> {sent}\n'\
+            f'<b>🌼 Download ➤</b> {recv}\n'\
+            f'<b>🌼 CPU ➤</b> {cpuUsage}%\n'\
+            f'<b>🌼 RAM ➤</b> {mem_p}%\n'\
+            f'<b>🌼 DISK ➤</b> {disk}%\n'\
+            f'<b>🌼 Physical Cores ➤</b> {p_core}\n'\
+            f'<b>🌼 Total Cores ➤</b> {t_core}\n'\
+            f'<b>🌼 SWAP ➤</b> {swap_t} | <b>Used:</b> {swap_p}%\n'\
+            f'<b>🌼 Memory Total ➤</b> {mem_t}\n'\
+            f'<b>🌼 Memory Free ➤</b> {mem_a}\n'\
+            f'<b>🌼 Memory Used ➤</b> {mem_u}\n'
 
 
 def start(update, context):
     buttons = ButtonMaker()
-    buttons.buildbutton("Repo", "https://www.github.com/anasty17/mirror-leech-telegram-bot")
-    buttons.buildbutton("Report Group", "https://t.me/+PRRzqHd31XY3ZWZk")
+    
+    buttons.buildbutton("💚 Repo 💚", "https://github.com/woodcraft5/mirror-leech-bot")
+    buttons.buildbutton(""🔴 Report Group 🔴", "https://t.me/FLAC_Org_Sound_track_Chat_On")
+    buttons.buildbutton("💚 Mirror Group💚 ", "https://t.me/FLAC_Org_Sound_track_Chat_On")
+    buttons.buildbutton("🔲 Owner 🔲", "https://t.me/woodcraft5"")
+    
     reply_markup = InlineKeyboardMarkup(buttons.build_menu(2))
     if CustomFilters.authorized_user(update) or CustomFilters.authorized_chat(update):
         start_string = f'''
-This bot can mirror all your links to Google Drive!
+Welcome | WOODcraft service is ready for you
 Type /{BotCommands.HelpCommand} to get a list of available commands
 '''
         sendMarkup(start_string, context.bot, update.message, reply_markup)
     else:
-        sendMarkup('Not Authorized user, deploy your own mirror-leech bot', context.bot, update.message, reply_markup)
+        sendMarkup('Sorry, You cannot use me', context.bot, update.message, reply_markup)
 
 def restart(update, context):
     restart_message = sendMessage("Restarting...", context.bot, update.message)
@@ -171,7 +174,7 @@ help_string_telegraph = f'''<br>
 '''
 
 help = telegraph.create_page(
-        title='Mirror-Leech-Bot Help',
+        title='🌼 WOODcraft-Bot Help 🌼',
         content=help_string_telegraph,
     )["path"]
 
@@ -220,13 +223,19 @@ def main():
                                  bot.editMessageText(msg, chat_id, msg_id, parse_mode='HTMl', disable_web_page_preview=True)
                                  osremove(".restartmsg")
                              else:
-                                 bot.sendMessage(cid, msg, 'HTML')
+                                 try:
+                                     bot.sendMessage(cid, msg, 'HTML')
+                                 except Exception as e:
+                                     LOGGER.error(e)
                              msg = ''
                 if 'Restarted successfully!' in msg and cid == chat_id:
                      bot.editMessageText(msg, chat_id, msg_id, parse_mode='HTMl', disable_web_page_preview=True)
                      osremove(".restartmsg")
                 else:
-                    bot.sendMessage(cid, msg, 'HTML')
+                    try:
+                        bot.sendMessage(cid, msg, 'HTML')
+                    except Exception as e:
+                        LOGGER.error(e)
 
     if ospath.isfile(".restartmsg"):
         with open(".restartmsg") as f:
@@ -251,10 +260,10 @@ def main():
     dispatcher.add_handler(stats_handler)
     dispatcher.add_handler(log_handler)
     updater.start_polling(drop_pending_updates=IGNORE_PENDING_REQUESTS)
-    LOGGER.info("Bot Started!")
+    LOGGER.info("Congratulations, Bot Started Sucessfully !")
     signal(SIGINT, exit_clean_up)
 
-main()
 app.start()
+main()
 
 main_loop.run_forever()
