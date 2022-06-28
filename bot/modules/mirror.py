@@ -1,4 +1,3 @@
-
 from base64 import b64encode
 from email import message
 from requests import utils as rutils, get as rget
@@ -177,13 +176,6 @@ class MirrorListener:
             drive.upload(up_name)
 
     def onDownloadError(self, error):
-        reply_to = self.message.reply_to_message
-        if reply_to is not None:
-            try:
-                reply_to.delete()
-            except Exception as error:
-                LOGGER.warning(error)
-                pass
         error = error.replace('<', ' ').replace('>', ' ')
         clean_download(f'{DOWNLOAD_DIR}{self.uid}')
         with download_dict_lock:
@@ -263,7 +255,7 @@ class MirrorListener:
                     buttons.buildbutton("🍁 Index Link 🍁", share_url)
                 else:
                     share_url = short_url(share_url)
-                    buttons.buildbutton("🍁 Index Link", share_url)
+                    buttons.buildbutton("🍁 Index Link 🍁", share_url)
                     if VIEW_LINK:
                         share_urls = f'{INDEX_URL}/{url_path}?a=view'
                         share_urls = short_url(share_urls)
