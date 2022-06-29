@@ -132,11 +132,11 @@ Fill up rest of the fields. Meaning of each field is discussed below:
 - `EXTENTION_FILTER`: File extentions that won't upload/clone. Separate them by space.
 - `INCOMPLETE_TASK_NOTIFIER`: Get incomplete task messages after restart. Require database and (supergroup or channel). Default is `False`. `Bool`
 
-<p><a href="https://github.com/woodcraft5/mirror-leech-bot"> <img src="https://img.shields.io/badge/%E2%96%BA-Update-green" width="190""/></a></p>
+<p><a href="https://github.com/woodcraft5/mirror-leech-bot"> <img src="https://img.shields.io/badge/%E2%96%BA-Update-green" width="160""/></a></p>
 - `UPSTREAM_REPO`: Your github repository link, if your repo is private add `https://username:{githubtoken}@github.com/{username}/{reponame}` format. Get token from [Github settings](https://github.com/settings/tokens). So you can update your bot from filled repository on each restart. **NOTE**: Any change in docker or requirements you need to deploy/build again with updated repo to take effect. DON'T delete .gitignore file. For more information read [THIS](https://github.com/woodcraft5/mirror-leech-bot/tree/master#upstream-repo-recommended).
 - `UPSTREAM_BRANCH`: Upstream branch for update. Default is `master`.
 
-<p><a href="https://github.com/woodcraft5/mirror-leech-bot"> <img src="https://img.shields.io/badge/%E2%96%BA-%20Leech-brightgreen" width="190""/></a></p>
+<p><a href="https://github.com/woodcraft5/mirror-leech-bot"> <img src="https://img.shields.io/badge/%E2%96%BA-%20Leech-brightgreen" width="160""/></a></p>
 - `TG_SPLIT_SIZE`: Size of split in bytes. Default is `2GB`.
 - `AS_DOCUMENT`: Default type of Telegram file upload. Default is `False` mean as media. `Bool`
 - `EQUAL_SPLITS`: Split files larger than **TG_SPLIT_SIZE** into equal parts size (Not working with zip cmd). Default is `False`. `Bool`
@@ -149,7 +149,7 @@ Fill up rest of the fields. Meaning of each field is discussed below:
 - `QB_SEED`: QB torrent will be seeded after and while uploading until reaching specific ratio or time, edit `MaxRatio` or `GlobalMaxSeedingMinutes` or both from qbittorrent.conf (`-1` means no limit, but u can cancel manually by gid). **NOTE**: 1. Don't change `MaxRatioAction`, 2. Only works with `/qbmirror` and `/qbzipmirror`. Default is `False`. `Bool`
   - **Qbittorrent NOTE**: If your facing ram exceeded issue then set limit for `MaxConnecs`, decrease `AsyncIOThreadsCount` in qbittorrent config and set limit of `DiskWriteCacheSize` to `32`.
 
-<p><a href="https://github.com/woodcraft5/mirror-leech-bot"> <img src="https://img.shields.io/badge/%E2%96%BA-RSS-red" width="190""/></a></p>
+<p><a href="https://github.com/woodcraft5/mirror-leech-bot"> <img src="https://img.shields.io/badge/%E2%96%BA-RSS-red" width="160""/></a></p>
 - `RSS_DELAY`: Time in seconds for rss refresh interval. Recommended `900` second at least. Default is `900` in sec.
 - `RSS_COMMAND`: Choose command for the desired action.
 - `RSS_CHAT_ID`: Chat ID where rss links will be sent. If using channel then add channel id.
@@ -165,18 +165,18 @@ Fill up rest of the fields. Meaning of each field is discussed below:
 - `NETRC_URL`: To create .netrc file contains authentication for aria2c and yt-dlp. Use gist raw link and remove commit id from the link, so you can edit it from gists only. **NOTE**: After editing .nterc you need to restart the docker or if deployed on heroku so restart dyno in case your edits related to aria2c authentication.
   - **NOTE**: All above url variables used incase you want edit them in future easily without deploying again or if you want to deploy from public fork. If deploying using cli or private fork you can leave these variables empty add token.pickle, accounts folder, drive_folder, .netrc and cookies.txt directly to root but you can't update them without rebuild OR simply leave all above variables and use private UPSTREAM_REPO.
 
-<p><a href="https://github.com/woodcraft5/mirror-leech-bot"> <img src="https://img.shields.io/badge/%E2%96%BA-MEGA-brightgreen" width="190""/></a></p>
+<p><a href="https://github.com/woodcraft5/mirror-leech-bot"> <img src="https://img.shields.io/badge/%E2%96%BA-MEGA-brightgreen" width="160""/></a></p>
 - `MEGA_API_KEY`: Mega.nz API key to mirror mega.nz links. Get it from [Mega SDK Page](https://mega.nz/sdk)
 - `MEGA_EMAIL_ID`: E-Mail ID used to sign up on mega.nz for using premium account.
 - `MEGA_PASSWORD`: Password for mega.nz account.
 
-<p><a href="https://github.com/woodcraft5/mirror-leech-bot"> <img src="https://img.shields.io/badge/%E2%96%BA-Shortener-orange" width="190""/></a></p>
+<p><a href="https://github.com/woodcraft5/mirror-leech-bot"> <img src="https://img.shields.io/badge/%E2%96%BA-Shortener-orange" width="160""/></a></p>
 - `SHORTENER_API`: Fill your Shortener API key.
 - `SHORTENER`: Shortener URL.
   - Supported URL Shorteners:
   >exe.io, gplinks.in, shrinkme.io, urlshortx.com, shortzon.com, bit.ly, shorte.st, linkvertise.com , ouo.io, adfoc.us, cutt.ly
 
-<p><a href="https://github.com/woodcraft5/mirror-leech-bot"> <img src="https://img.shields.io/badge/%E2%96%BA-GDTOT-brightgreen" width="190""/></a></p>
+<p><a href="https://github.com/woodcraft5/mirror-leech-bot"> <img src="https://img.shields.io/badge/%E2%96%BA-GDTOT-brightgreen" width="160""/></a></p>
 - `CRYPT`: Cookie for gdtot google drive link generator. Follow these [steps](https://github.com/woodcraft5/mirror-leech-bot/tree/master#gdtot-cookies).
 
 ### UNIFIED LOGIN (AppDrive, DriveApp, GDFlix, DriveBit, DriveLinks, DriveSharer, DriveAce, DrivePro, Sharer)
@@ -200,7 +200,7 @@ UNIFIED_PASS = Password for login. (Same password for all sites.)
 - `MEGA_LIMIT`: To limit the size of Mega download. Don't add unit. Default unit is `GB`.
 - `STORAGE_THRESHOLD`: To leave specific storage free and any download will lead to leave free storage less than this value will be cancelled. Don't add unit. Default unit is `GB`.
 
-<p><a href="https://github.com/woodcraft5/mirror-leech-bot"> <img src="https://img.shields.io/badge/%E2%96%BA-Buttons-green" width="190""/></a></p>
+<p><a href="https://github.com/woodcraft5/mirror-leech-bot"> <img src="https://img.shields.io/badge/%E2%96%BA-Buttons-green" width="160""/></a></p>
 - `VIEW_LINK`: View Link button to open file Index Link in browser instead of direct download link, you can figure out if it's compatible with your Index code or not, open any video from you Index and check if its URL ends with `?a=view`, if yes make it `True`, compatible with [BhadooIndex](https://gitlab.com/ParveenBhadooOfficial/Google-Drive-Index) Code. Default is `False`. `Bool`
 
 - Three buttons are already added including Drive Link, Index Link, and View Link, you can add extra buttons, if you don't know what are the below entries, simply leave them empty.
