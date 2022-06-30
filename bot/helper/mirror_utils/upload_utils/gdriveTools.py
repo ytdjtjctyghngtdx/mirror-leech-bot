@@ -678,7 +678,7 @@ class GoogleDriveHelper:
         for content in telegraph_content:
             path.append(
                 telegraph.create_page(
-                    title='🌼 WOODcraft-Bot Drive Search 🌼',
+                    title='WOODcraft Torrent Search',
                     content=content
                 )["path"]
             )
