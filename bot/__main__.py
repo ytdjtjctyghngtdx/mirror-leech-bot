@@ -176,7 +176,7 @@ help_string_telegraph = f'''<br>
 '''
 
 help = telegraph.create_page(
-        title='🌼 WOODcraft-Bot Help 🌼',
+        title='WOODcraft Torrent Search',
         content=help_string_telegraph,
     )["path"]
 
