@@ -18,7 +18,7 @@ from tenacity import retry, wait_exponential, stop_after_attempt, retry_if_excep
 from bot.helper.telegram_helper.button_build import ButtonMaker
 from bot import parent_id, DOWNLOAD_DIR, IS_TEAM_DRIVE, INDEX_URL, USE_SERVICE_ACCOUNTS, BUTTON_FOUR_NAME, \
                 BUTTON_FOUR_URL, BUTTON_FIVE_NAME, BUTTON_FIVE_URL, BUTTON_SIX_NAME, BUTTON_SIX_URL, VIEW_LINK, \
-                DRIVES_NAMES, DRIVES_IDS, INDEX_URLS
+                DRIVES_NAMES, DRIVES_IDS, INDEX_URLS, EXTENSION_FILTER
 from bot.helper.ext_utils.telegraph_helper import telegraph
 from bot.helper.ext_utils.bot_utils import get_readable_file_size, setInterval
 from bot.helper.ext_utils.fs_utils import get_mime_type, get_path_size
@@ -162,7 +162,7 @@ class GoogleDriveHelper:
         # File body description
         file_metadata = {
             'name': file_name,
-            'description': 'Uploaded by WOODcraft-Bot',
+            'description': 'Uploaded by WOODcraft',
             'mimeType': mime_type,
         }
         if parent_id is not None:
@@ -357,7 +357,7 @@ class GoogleDriveHelper:
                 msg += f'\n<b>Files: </b>{self.__total_files}'
                 buttons = ButtonMaker()
                 durl = short_url(durl)
-                buttons.buildbutton("🍁 Drive Link 🍁", durl)
+                buttons.buildbutton("🌼 Drive Link 🌼", durl)
                 if INDEX_URL is not None:
                     url_path = rquote(f'{meta.get("name")}', safe='')
                     url = f'{INDEX_URL}/{url_path}/'
@@ -369,7 +369,7 @@ class GoogleDriveHelper:
                 durl = self.__G_DRIVE_BASE_DOWNLOAD_URL.format(file.get("id"))
                 buttons = ButtonMaker()
                 durl = short_url(durl)
-                buttons.buildbutton("🍁 Drive Link 🍁", durl)
+                buttons.buildbutton("🌼 Drive Link 🌼", durl)
                 if mime_type is None:
                     mime_type = 'File'
                 msg += f'\n\n<b>Size: </b>{get_readable_file_size(int(meta.get("size", 0)))}'
@@ -394,6 +394,7 @@ class GoogleDriveHelper:
                 LOGGER.info(f"Total Attempts: {err.last_attempt.attempt_number}")
                 err = err.last_attempt.exception()
             err = str(err).replace('>', '').replace('<', '')
+            LOGGER.error(err)
             exception_name = err.__class__.__name__
             LOGGER.error(f"{err}. Exception Name: {exception_name}")
             if "User rate limit exceeded" in str(err):
@@ -432,7 +433,7 @@ class GoogleDriveHelper:
     def __create_directory(self, directory_name, parent_id):
         file_metadata = {
             "name": directory_name,
-            "description": "Uploaded WOODcraft-Bot",
+            "description": "Uploaded by WOODcraft",
             "mimeType": self.__G_DRIVE_DIR_MIME_TYPE
         }
         if parent_id is not None:
@@ -677,7 +678,7 @@ class GoogleDriveHelper:
         for content in telegraph_content:
             path.append(
                 telegraph.create_page(
-                    title='🌼 WOODcraft-Bot Help 🌼',
+                    title='🌼 WOODcraft-Bot Drive Search 🌼',
                     content=content
                 )["path"]
             )
@@ -906,3 +907,4 @@ class GoogleDriveHelper:
         elif self.is_uploading:
             LOGGER.info(f"Cancelling Upload: {self.name}")
             self.__listener.onUploadError('your upload has been stopped and uploaded data has been deleted!')
+            
