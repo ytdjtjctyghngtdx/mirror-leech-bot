@@ -68,7 +68,7 @@ def start(update, context):
     buttons.buildbutton("Repo", "https://github.com/woodcraft5/mirror-leech-bot")
     buttons.buildbutton("Report Group", "https://t.me/FLAC_Org_Sound_track_Chat_On")
     buttons.buildbutton("Mirror Group", "https://t.me/FLAC_Org_Sound_track_Chat_On")
-    buttons.buildbutton("Owner", "https://t.me/woodcraft5"")
+    buttons.buildbutton("Owner", "https://t.me/woodcraft5")
     
     reply_markup = InlineKeyboardMarkup(buttons.build_menu(2))
     if CustomFilters.authorized_user(update) or CustomFilters.authorized_chat(update):
