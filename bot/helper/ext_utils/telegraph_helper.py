@@ -69,9 +69,9 @@ class TelegraphHelper:
                     nxt_page += 1
             self.edit_page(
                 path = path[prev_page],
-                title = '🌼 WOODcraft-Bot 🌼 Search',
+                title = 'WOODcraft Torrent Search',
                 content=content
             )
         return
 
-telegraph=TelegraphHelper('🌼 WOODcraft-Telegram-Repo', 'https://github.com/shuvam-dawn/MLTB-Custom-UI')
+telegraph=TelegraphHelper('WOODcraft Repo', 'https://github.com/woodcraft5/mirror-leech-bot')
