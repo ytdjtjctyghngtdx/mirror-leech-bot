@@ -236,7 +236,7 @@ class MirrorListener:
             if ospath.isdir(f'{DOWNLOAD_DIR}{self.uid}/{name}'):
                 msg += f'\n<b>➦ SubFolders: </b>{folders}'
                 msg += f'\n<b>➦ Files: </b>{files}'
-            msg += f'\n\n<b>➦ Hey </b>{self.tag} <b>Your Job is Done</b>'
+            msg += f'\n\n<b>➦ Hey </b>{self.tag} <b>➦ Your file Successful</b>'
             msg += f'\n<b>➦ It Tooks:</b> {get_readable_time(time() - self.message.date.timestamp())}'
             msg += f'\n\n<b>🍁 YOU using @woodcraft_repo</b>'
             buttons = ButtonMaker()
