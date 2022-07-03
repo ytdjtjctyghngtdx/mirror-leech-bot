@@ -514,7 +514,7 @@ try:
         CHANNEL_USERNAME = 'woodcraft_repo'
 except KeyError:
     logging.warning('CHANNEL_USERNAME not provided')
-    CHANNEL_USERNAME = '@woodcraft_repo'
+    CHANNEL_USERNAME = '@mirror-leech-bot'
 try:
     TOKEN_PICKLE_URL = getConfig('TOKEN_PICKLE_URL')
     if len(TOKEN_PICKLE_URL) == 0:
