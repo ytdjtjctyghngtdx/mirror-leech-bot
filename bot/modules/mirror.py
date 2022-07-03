@@ -215,14 +215,14 @@ class MirrorListener:
                 buttons.buildbutton("View file in PM", f"{botstart}")
             msg += f'\n<b>➦ Total Files: </b>{folders}'
             if typ != 0:
-                msg += f'\n<b>Corrupted Files: </b>{typ}'
-            msg += f'\n\n<b>➦ Hey </b>{self.tag} <b>Your Job is Done</b>'
+                msg += f'\n<b>➦ Corrupted Files: </b>{typ}'
+            msg += f'\n\n<b>➦ Hey </b>{self.tag} <b>➦ Your file Successful</b>'
             msg += f'\n<b>➦ It Tooks:</b> {get_readable_time(time() - self.message.date.timestamp())}'
-            msg += f'\n\n<b>🍁 Thanks For using @woodcraft5</b>'
+            msg += f'\n\n<b>🍁 YOU using  @woodcraft_repo</b>'
             if not files:
                 sendMessage(msg, self.bot, self.message)
             else:
-                fmsg = '\n<b>Your Files Are:</b>\n'
+                fmsg = '\n<b>➦ This is your file:</b>\n'
                 for index, (link, name) in enumerate(files.items(), start=1):
                     fmsg += f"{index}. <a href='{link}'>{name}</a>\n"
                     if len(fmsg.encode() + msg.encode()) > 4000:
@@ -238,7 +238,7 @@ class MirrorListener:
                 msg += f'\n<b>➦ Files: </b>{files}'
             msg += f'\n\n<b>➦ Hey </b>{self.tag} <b>Your Job is Done</b>'
             msg += f'\n<b>➦ It Tooks:</b> {get_readable_time(time() - self.message.date.timestamp())}'
-            msg += f'\n\n<b>🍁 Thanks For using @woodcraft5</b>'
+            msg += f'\n\n<b>🍁 YOU using @woodcraft_repo</b>'
             buttons = ButtonMaker()
             link = short_url(link)
             buttons.buildbutton("🌼 Drive Link 🌼", link)
@@ -337,7 +337,7 @@ def _mirror(bot, message, isZip=False, extract=False, isQbit=False, isLeech=Fals
             b_uname = bot_d.username
             uname = f'<a href="tg://user?id={message.from_user.id}">{message.from_user.first_name}</a>'
             botstart = f"http://t.me/{b_uname}"
-            buttons.buildbutton("Click Here to Start Me", f"{botstart}")
+            buttons.buildbutton("➦Click Here to Start Me", f"{botstart}")
             startwarn = f"Dear {uname},\n\n<b>I found that you haven't started me in PM (Private Chat) yet.</b>\n\n" \
                         f"From now on i will give link and leeched files in PM and log channel only"
             message = sendMarkup(startwarn, bot, message, InlineKeyboardMarkup(buttons.build_menu(2)))
