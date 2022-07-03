@@ -7,11 +7,9 @@ from psutil import virtual_memory, cpu_percent, disk_usage
 from requests import head as rhead
 from urllib.request import urlopen
 from telegram import InlineKeyboardMarkup
-
-from bot.helper.telegram_helper.bot_commands import BotCommands
 from bot import download_dict, download_dict_lock, STATUS_LIMIT, botStartTime, DOWNLOAD_DIR
+from bot.helper.telegram_helper.bot_commands import BotCommands
 from bot.helper.telegram_helper.button_build import ButtonMaker
-
 import shutil
 import psutil
 from telegram.error import RetryAfter
@@ -192,7 +190,7 @@ def get_readable_message():
                 msg += "\n"
             if STATUS_LIMIT is not None and index == STATUS_LIMIT:
                 break
-        bmsg = f"\n<b>_____________________________________</b>"
+        bmsg = f"\n<b>★★★★★★★★★★★★★★★★★★★★★★★</b>"
         bmsg += f"\n<b>★Disk:</b> {get_readable_file_size(disk_usage(DOWNLOAD_DIR).free)}"
         bmsg += f"<b> | ★UPTM:</b> {get_readable_time(time() - botStartTime)}"
         dlspeed_bytes = 0
@@ -380,7 +378,7 @@ def bot_sys_stats():
 ★Disk: {total} | ★Free: {free}
 ★Used: [{disk}%] ★is {used}
 
-Made with ➥ 𝐁𝐲 - 𝐖𝐎𝐎𝐃𝐜𝐫𝐚𝐟𝐭
+★Powered By ➥ 𝐁𝐲 - 𝐖𝐎𝐎𝐃𝐜𝐫𝐚𝐟𝐭
 """
     return stats
 dispatcher.add_handler(
