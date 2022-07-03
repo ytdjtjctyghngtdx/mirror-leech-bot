@@ -167,8 +167,8 @@ def get_readable_message():
                 msg += f'\n<b>★Req By :</b> <a href="https://t.me/c/{str(download.message.chat.id)[4:]}/{download.message.message_id}">{download.message.from_user.first_name}</a>'
                 msg += f"\n<b>★Engine :</b> {download.eng()}"
                 try:
-                    msg += f"\n<b>Seeders:</b> {download.aria_download().num_seeders}" \
-                           f" | <b>Peers:</b> {download.aria_download().connections}"
+                    msg += f"\n<b>★Seeders:</b> {download.aria_download().num_seeders}" \
+                           f" | <b>★Peers:</b> {download.aria_download().connections}"
                 except:
                     pass
                 try:
@@ -192,7 +192,7 @@ def get_readable_message():
                 msg += "\n"
             if STATUS_LIMIT is not None and index == STATUS_LIMIT:
                 break
-        bmsg = f"\n<b>_____________________________________</b>"
+        bmsg = f"\n<b>✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧</b>"
         bmsg += f"\n<b>★Disk:</b> {get_readable_file_size(disk_usage(DOWNLOAD_DIR).free)}"
         bmsg += f"<b> | ★UPTM:</b> {get_readable_time(time() - botStartTime)}"
         dlspeed_bytes = 0
@@ -216,7 +216,7 @@ def get_readable_message():
         sbutton = InlineKeyboardMarkup(buttons.build_menu(1))
         
         if STATUS_LIMIT is not None and tasks > STATUS_LIMIT:
-            msg += f"\n<b>Tasks:</b> {tasks}\n"
+            msg += f"\n<b>★Tasks:</b> {tasks}\n"
             buttons = ButtonMaker()
             buttons.sbutton("Prev", "status pre")
             buttons.sbutton(f"{PAGE_NO}/{pages}", str(THREE))
