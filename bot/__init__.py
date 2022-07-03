@@ -511,7 +511,7 @@ except KeyError:
 try:
     CHANNEL_USERNAME: str = getConfig('CHANNEL_USERNAME').replace("@", "")
     if len(CHANNEL_USERNAME) == 0:
-        CHANNEL_USERNAME = 'woodcraft_repo'
+        CHANNEL_USERNAME = 'mirror-leech-bot'
 except KeyError:
     logging.warning('CHANNEL_USERNAME not provided')
     CHANNEL_USERNAME = '@mirror-leech-bot'
