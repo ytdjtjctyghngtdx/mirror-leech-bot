@@ -79,7 +79,7 @@ def _clone(message, bot, multi=0):
             LOGGER.info('Checking File/Folder if already in Drive...')
             smsg, button = gd.drive_list(name, True, True)
             if smsg:
-                msg3 = "Someone already mirrored it for you !\nHere you go:"
+                msg3 = "➦ Already available !\n➦ Drive you go:"
                 return sendMarkup(msg3, bot, message, button)
         if CLONE_LIMIT is not None:
             LOGGER.info('Checking File/Folder Size...')
@@ -118,7 +118,7 @@ def _clone(message, bot, multi=0):
                     update_all_messages()
             except IndexError:
                 pass
-        cc = f'\n\n<b>Hey </b>{tag}<b> Your Task is Done</b>\n\n<b>🍁 Thanks for using <i>@woodcraft5</i></b>'
+        cc = f'\n\n<b>➦ Hey </b>{tag}<b>➦ Your file Successful</b>\n\n<b>🍁 YOU using <i>@woodcraft_repo</i></b>'
         if button in ["cancelled", ""]:
             sendMessage(f"{tag} {result}", bot, message)
         else:
